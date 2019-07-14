@@ -17,7 +17,6 @@ export class QuestionServiceService {
     );
   }
   AnswerQuestions(answersIds:number[]):Observable<boolean>{
-    debugger;
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json'
