@@ -10,6 +10,7 @@ import { ValidationService } from '../validation.service';
 export class QuestionComponent implements OnInit, OnDestroy {
   @Input() Question: IQuestion;
   @Input() ShowAnswersPercentage: boolean;
+  @Input()  TotalNumberOfAnswers:number;
   @Output() QuestionAnswersOutPut: EventEmitter<number[]> = new EventEmitter<number[]>();
   ChosenAnswers: number[];
   CanValidate:boolean;
@@ -36,10 +37,6 @@ export class QuestionComponent implements OnInit, OnDestroy {
       this.QuestionAnswersOutPut.emit(this.ChosenAnswers);
     }
     return validateResult;
-  }
-  getTotalNumberOfAnswers(): number {
-    let sum = this.Question.Answers.map(i => i.Number).reduce((a, b) => a + b, 0);
-    return sum;
   }
   ngOnDestroy() {
     // prevent memory leak when component destroyed

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IQuestion } from '../models/IQuestion';
+import { IQuestion, QuestionType } from '../models/IQuestion';
 import { ValidationService } from '../validation.service';
 import { QuestionServiceService } from '../question-service.service';
 import {Router} from "@angular/router"
@@ -15,6 +15,7 @@ export class QuestionListComponent implements OnInit {
   Questions: IQuestion[];
   QuestionsAnswers: number[];
   ErrorMessage: string;
+  NumberOfRespondents:number;
   constructor(private validationService: ValidationService, private questionService: QuestionServiceService,private router: Router) {
     validationService.ValidationConfirmed$.subscribe(validationResult => {
       this.isValid = this.isValid && validationResult;
@@ -29,6 +30,11 @@ export class QuestionListComponent implements OnInit {
       {
       this.Questions = questions;
       this.ShowLoder=false;
+      let singleChoiceQuestion =this.Questions.filter(x => x.Type === QuestionType.SingleChoice)[0];
+      if(singleChoiceQuestion)
+      {
+        this.NumberOfRespondents= singleChoiceQuestion.Answers.map(i => i.Number).reduce((a, b) => a + b, 0);
+      }
       },
       error => {
         this.ErrorMessage = error as any;
@@ -43,7 +49,7 @@ export class QuestionListComponent implements OnInit {
   submit() {
     this.validate();
     if (this.isValid) {
-
+      this.ShowLoder=true;
       this.questionService.AnswerQuestions(this.QuestionsAnswers).subscribe(result => {
         if (result) {
           alert("success");
@@ -53,6 +59,7 @@ export class QuestionListComponent implements OnInit {
         {
           alert("error");
         }
+        this.ShowLoder=false;
       }
       );
     }
