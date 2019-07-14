@@ -1,0 +1,10 @@
+<div class="loading-img" *ngIf="ShowLoder">
+    <img src="../../assets/images/reload.gif" alt="Loading...">
+</div>
+<div *ngIf="!ShowLoder">
+    <div *ngFor="let question of Questions">
+        <app-question [Question]="question" (QuestionAnswersOutPut)="onQuestionAnswer($event)"
+            [ShowAnswersPercentage]="ShowAnswersPercentage"></app-question>
+    </div>
+    <button *ngIf="!ShowAnswersPercentage" (click)="submit()">Submit</button>
+</div>

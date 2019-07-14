@@ -1,0 +1,5 @@
+<div *ngFor="let Answer of Answers">
+    <ul class="list-group">
+        <app-answer [Answer]="Answer" [ChoiceType]="ChoiceType" [AnswerGroup]="AnswersGroup" [ShowAnswersPercentage]="ShowAnswersPercentage"  [TotalNumberOfAnswers]="TotalNumberOfAnswers" (ChosenAnswer)="onChosenAnswer($event)"  ></app-answer>
+    </ul>
+</div>

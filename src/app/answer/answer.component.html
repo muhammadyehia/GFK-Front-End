@@ -1,0 +1,14 @@
+<li *ngIf='isSingleChoice()' class="list-group-item">
+    <input *ngIf="!ShowAnswersPercentage" type="radio" [name]="AnswerGroup" value="{{Answer.Id}}"
+        (change)="checked()" />
+
+    {{Answer.Text}} <span *ngIf="ShowAnswersPercentage"> {{calculateAnswerPercentage()}} %</span>
+
+</li>
+<li *ngIf='isMultipleChoice()' class="list-group-item">
+
+    <input *ngIf="!ShowAnswersPercentage" type="checkbox" id="subscribeNews" [name]="AnswerGroup" value="{{Answer.Id}}"
+        (change)="checked()" />
+
+    {{Answer.Text}} <span *ngIf="ShowAnswersPercentage"> {{calculateAnswerPercentage()}} %</span>
+</li>

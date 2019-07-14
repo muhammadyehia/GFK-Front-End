@@ -1,0 +1,11 @@
+.loading-img{
+    position: fixed;
+    top:0px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    background-color: #fff;
+    vertical-align: middle;
+    text-align: center;
+    padding-top:200px;
+}

@@ -1,0 +1,2 @@
+<p [class.error]="CanValidate&&!validate()">{{Question.Text}}</p>
+<app-answer-list [Answers]="Question.Answers"  [ChoiceType]="Question.Type" [AnswersGroup]="Question.Id" [TotalNumberOfAnswers]="getTotalNumberOfAnswers()" [ShowAnswersPercentage]="ShowAnswersPercentage" (ChosenAnswersOutPut)="onChosenAnswers($event)" > </app-answer-list>
